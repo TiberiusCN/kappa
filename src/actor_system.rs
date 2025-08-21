@@ -463,7 +463,7 @@ impl<J: Signaled> ActorContext<J> {
     };
     #[allow(unused_mut)]
     let child = name.clone();
-    let mut me = self.tx.clone();
+    let mut me = self.tx.weak();
     spawn(async move {
       while let Some(j) = srx.recv().await {
         otx.tell(j.into());
