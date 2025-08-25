@@ -575,7 +575,7 @@ impl<J: Signaled> ActorContext<J> {
       #[cfg(feature = "actor-debug")]
       name: name.clone(),
     };
-    let me = self.tx();
+    let me = self.tx().weak();
     let inner = async move {
       while let Some((timeout, j)) = rx.recv().await {
         let mut me = me.clone();
